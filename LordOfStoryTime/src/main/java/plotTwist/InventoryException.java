@@ -3,11 +3,11 @@ package plotTwist;
 public class InventoryException extends Exception {
 
 	private static final long serialVersionUID = 2L;
-	private final String item;
+	private final InventoryItem item;
 	private final int availableItems;
     private final int requiredItems;
 
-	public InventoryException(String item, int available, int required) {
+	public InventoryException(InventoryItem item, int available, int required) {
 		super("Not Enough " + item +" in Inventory. Available : "+available+" but required : "+required);
     	this.availableItems = available;
         this.requiredItems = required;
@@ -20,7 +20,7 @@ public class InventoryException extends Exception {
 	public int getRequiredItems() {
 		return requiredItems;
 	}
-	public String getItem() {
+	public InventoryItem getItem() {
 		return item;
 	}
 }

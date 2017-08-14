@@ -9,12 +9,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class TestStoryArc {
-	StoryCharacter jisu;
+	StoryCharacterUser jisu;
 	StoryArc theBeginning;
 	
 	@Before
 	public void setUp() throws Exception {
-		jisu = new StoryCharacter("Jisu", CharacterRole.MASTER);
+		jisu = new StoryCharacterUser("Jisu", CharacterRole.MASTER);
 		theBeginning = new StoryArc("The Begginning");
 	}
 
@@ -29,14 +29,14 @@ public class TestStoryArc {
 	
 	@Test
 	public void test_StoryArcReturnEmptyCharacterList_WhenNoneAreEntered() {
-		List<StoryCharacter> characters = theBeginning.getCharacters();
+		List<StoryCharacterUser> characters = theBeginning.getCharacters();
 		assertEquals(0, characters.size());
 	}
 	
 	@Test
 	public void test_StoryArcAddsCharacterToCharacterList_WhenCharacterIsAdded() {
 		theBeginning.addCharacter(jisu);
-		List<StoryCharacter> characters = theBeginning.getCharacters();
+		List<StoryCharacterUser> characters = theBeginning.getCharacters();
 		assertEquals(1, characters.size());
 	}
 	

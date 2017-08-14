@@ -5,24 +5,24 @@ import java.util.List;
 
 public class StoryArc {
 	String arcName;
-	List<StoryCharacter> characters;
+	List<StoryCharacterUser> characters;
 
 	public StoryArc(String name) {
 		super();
 		this.arcName = name;
-		this.characters = new ArrayList<StoryCharacter>();
+		this.characters = new ArrayList<StoryCharacterUser>();
 	}
 
-	public List<StoryCharacter> getCharacters() {
+	public List<StoryCharacterUser> getCharacters() {
 		return this.characters;
 	}
 
-	public void addCharacter(StoryCharacter character) {
+	public void addCharacter(StoryCharacterUser character) {
 		this.characters.add(character);
 		
 	}
 
-	public boolean characterIsInArc(StoryCharacter jisu) {
+	public boolean characterIsInArc(StoryCharacterUser jisu) {
 		return this.characters.contains(jisu);
 	}
 

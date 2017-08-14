@@ -1,133 +1,81 @@
 package plotTwist;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-
-
-public class StoryCharacter {
+public abstract class StoryCharacter {
 	private String name;
 	private CharacterRole role;
-	private HashMap<String, Integer> inventory;
-	private int money;
+	private Health health;
 	
 	public StoryCharacter() {
+		super();
 		this.name = "";
-		this.role = CharacterRole.NPC;
-		this.inventory = new HashMap<String, Integer>();
-		this.money = 100;
+		this.role = CharacterRole.NONDETERMINED;
+		this.setHealth(new Health());
 	}
-	
 	public StoryCharacter(String name) {
+		super();
 		this.name = name;
 		this.role = CharacterRole.NONDETERMINED;
-		this.inventory = new HashMap<String, Integer>();
-		this.money = 100;
+		this.setHealth(new Health());
 	}
 	public StoryCharacter(String name, CharacterRole role) {
+		super();
 		this.name = name;
 		this.role = role;
-		this.inventory = new HashMap<String, Integer>();
-		this.money = 100;
+		this.setHealth(new Health());
 	}
-	
-	public int getMoney() {
-		return money;
+	public StoryCharacter(String name, CharacterRole role, Health health) {
+		super();
+		this.name = name;
+		this.role = role;
+		this.setHealth(health);
 	}
-	
-	public void addMoney(int amount) {
-		this.money += amount;
-	}
-	
-	public void removeMoney(int amount) throws StoryException{
-		if(getMoney() >= amount) {
-			this.money -= amount;
-		} else {
-			throw new StoryException("You do not have enough Money!");
-		}
-	}
-
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
+	
 	public CharacterRole getRole() {
 		return role;
 	}
 	public void setRole(CharacterRole role) {
 		this.role = role;
 	}
-
-	public HashMap<String, Integer> getInventory() {
-		return this.inventory;
+	public Health getHealth() {
+		return health;
+	}
+	public void setHealth(Health health) {
+		this.health = health;
 	}
 
-	public void addToInventory(String item) {
-		if (inventory.containsKey(item)) {
-			int previousValue = inventory.get(item);
-			inventory.replace(item, previousValue+1);
-		} else {
-			inventory.put(item, 1);
-		}
+	public int getCharacterHealthBar() {
+		return this.health.getHealthBar();
+	}
+	public void setCharacterHealthBar(int healthBar) {
+		this.health.setHealthBar(healthBar);
+	}
+	public int getCharacterMP() {
+		return this.health.getMP();
+	}
+	public void setCharacterMP(int mP) {
+		this.health.setMP(mP);;
 	}
 	
-	public void addToInventory(String item, int count) {
-		if (inventory.containsKey(item)) {
-			int previousValue = inventory.get(item);
-			inventory.replace(item, previousValue+count);
-		} else {
-			inventory.put(item, count);
-		}
-	}
-
-	public int getItemNumber(String item) {
-		int value = inventory.get(item);
-		return value;
-	}
-
-	public String printInventory() {
-		StringBuilder stringBuffer = new StringBuilder();
-		Iterator<Entry<String, Integer>> iterator = inventory.entrySet().iterator();
-		
-		while(iterator.hasNext()) {
-			Entry<String, Integer> entry = iterator.next();
-			stringBuffer.append(entry.getKey());
-			stringBuffer.append(": ");
-			stringBuffer.append(entry.getValue());
-			stringBuffer.append("\n");
-		}
-		
-		
-		return stringBuffer.toString();
-	}
-
-	public boolean removeFromInventory(String item) throws InventoryException {
-		if (inventory.containsKey(item)) {
-			int previousValue = inventory.get(item);
-			if(previousValue >= 1) {
-				inventory.replace(item, previousValue-1);
-			} else {
-				throw new InventoryException(item, previousValue, 1);
-			}
-			return true;
-		} else return false;
+	public int removeCharacterMP(int mP) {
+		return this.health.removeMP(mP);
 	}
 	
-	
-	public boolean  removeFromInventory(String item, int count)  throws InventoryException {
-		if (inventory.containsKey(item)) {
-			int previousValue = inventory.get(item);
-			if(previousValue >= count) {
-				inventory.replace(item, previousValue-count);
-			} else {
-				throw new InventoryException(item, previousValue, count);
-			}
-			return true;
-		} else return false;
+	public int removeCharacterHealth(int health) {
+		return this.health.removeHealth(health);
 	}
-
 	
+	public int addCharacterMP(int mP) {
+		return this.health.addMP(mP);
+	}
+	
+	public int addCharacterHealth(int health) {
+		return this.health.addHealth(health);
+	}
 	
 }

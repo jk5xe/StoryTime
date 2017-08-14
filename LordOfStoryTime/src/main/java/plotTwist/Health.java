@@ -55,7 +55,7 @@ public class Health {
 		return this.MP;
 	}
 	
-	public int removHealth(int health) {
+	public int removeHealth(int health) {
 		this.healthBar -= health;
 		return this.healthBar;
 	}
